@@ -97,6 +97,19 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:
 
                             " 设置在状态行显示的信息
 
+set encoding=utf-8
+set fileencodings=utf-8,chinese,latin-1
+if has("win32")
+	set fileencoding=chinese
+else
+	set fileencoding=utf-8
+endif
+"解决菜单乱码
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+"解决consle输出乱码
+language messages zh_CN.utf-8
+							
 
 " return OS type, eg: windows, or linux, mac, et.st..
 
@@ -390,7 +403,7 @@ source $VIM/vimfiles/neocomplcache.conf
 
 "=====================================================================
 " plugin - matchit.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
-“====================================================================
+"====================================================================
 " % 正向匹配      g% 反向匹配
 " [% 定位块首     ]% 定位块尾
 
