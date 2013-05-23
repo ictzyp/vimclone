@@ -41,8 +41,6 @@ colorscheme molokai         " 设定配色方案
 
 set number                  " 显示行号
 
-set cursorline              " 突出显示当前行
-
 set ruler                   " 打开状态栏标尺
 
 set shiftwidth=4            " 设定 << 和 >> 命令移动时的宽度为 4
@@ -99,23 +97,6 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:
 
                             " 设置在状态行显示的信息
 
-set foldenable              " 开始折叠
-
-set foldmethod=syntax       " 设置语法折叠
-
-set foldcolumn=0            " 设置折叠区域的宽度
-
-setlocal foldlevel=1        " 设置折叠层数为
-
-" set foldclose=all           " 设置为自动关闭折叠                            
-
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
-                            " 用空格键来开关折叠
-
-
-
-
 
 " return OS type, eg: windows, or linux, mac, et.st..
 
@@ -152,57 +133,6 @@ endif
 " 设定doc文档目录
 
 let helptags=$VIMFILES.'/doc'
-
-
-" 设置字体 以及中文支持
-
-"if has("win32")
-
-"    set guifont=Inconsolata:h12:cANSI
-
-"endif
-
-
-
-" 配置多语言环境
-
-"if has("multi_byte")
-"
-"   " UTF-8 编码
-
-"    set encoding=utf-8
-
-"   set termencoding=utf-8
-
-"    set formatoptions+=mM
-
-"   set fencs=utf-8,gbk
-
-
-
-"   if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
-
-"       set ambiwidth=double
-
-"   endif
-
-
-
-"   if has("win32")
-
-"        source $VIMRUNTIME/delmenu.vim
-
-"       source $VIMRUNTIME/menu.vim
-
-"       language messages zh_CN.utf-8
-
-"   endif
-
-"else
-
-"    echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
-
-"endif
 
 
 
