@@ -28,3 +28,6 @@
 [submodule "bundle/vim-rust"]
 	path = bundle/vim-rust
 	url = https://github.com/wting/rust.vim
+[submodule "bundle/vim-python"]
+	path = bundle/vim-python
+	url = https://github.com/hdima/python-syntax.git
