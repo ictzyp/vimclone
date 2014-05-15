@@ -32,16 +32,46 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+" return OS type, eg: windows, or linux, mac, et.st..
+
+function! MySys()
+
+    if has("win16") || has("win32") || has("win64") || has("win95")
+
+        return "windows"
+
+    elseif has("unix")
+
+        return "linux"
+
+    endif
+
+endfunction
+
 
 "============myself=====================
 
 syntax on                   " 自动语法高亮
 
-colorscheme molokai         " 设定配色方案
+"colorscheme molokai         " 设定配色方案
+if has("gui_running")
+    colorscheme molokai
+else
+"    colorscheme evening
+endif "has
+
 
 set number                  " 显示行号
 
 set ruler                   " 打开状态栏标尺
+
+set list                    "显示tab和换行"
+
+set listchars=tab:>-,trail:-
+
+set expandtab
+
+set smarttab
 
 set shiftwidth=4            " 设定 << 和 >> 命令移动时的宽度为 4
 
@@ -53,7 +83,12 @@ set nobackup                " 覆盖文件时不备份
 
 set autochdir               " 自动切换当前目录为当前文件所在的目录
 
+filetype on
+
+filetype plugin on 
+
 filetype plugin indent on   " 开启插件
+
 
 set backupcopy=yes          " 设置备份时的行为为覆盖
 
@@ -97,35 +132,32 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:
 
                             " 设置在状态行显示的信息
 
+
+"encoding: Vim 内部使用的字符编码方式，包括 Vim 的 buffer (缓冲区)、菜单文本、消息文本等。
+"fileencoding: Vim 中当前编辑的文件的字符编码方式，Vim 保存文件时也会将文件保存为这种字符编码方式 (不管是否新文件都如此)。
+ "fileencodings: Vim 启动时会按照它所列出的字符编码方式逐一探测即将打开的文件的字符编码方式，并且将 fileencoding 设置为最终探测到的字符编码方式。
+ "termencoding: Vim 所工作的终端 (或者 Windows 的 Console 窗口) 的字符编码方式。这个选项在 Windows 下对我们常用的 GUI 模式的 gVim 无效。
+
+
+
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
-if has("win32")
-	set fileencoding=chinese
-else
-	set fileencoding=utf-8
+set fileencoding=utf-8
+set fileformats=unix,dos,mac
+if MySys() == "windows"
+    set termencoding=chinese
+    set fileformat=dos
+elseif MySys() == "linux"
+    set termencoding=utf-8
+    set fileformat=unix
 endif
+
 "解决菜单乱码
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 "解决consle输出乱码
 language messages zh_CN.utf-8
-							
 
-" return OS type, eg: windows, or linux, mac, et.st..
-
-function! MySys()
-
-    if has("win16") || has("win32") || has("win64") || has("win95")
-
-        return "windows"
-
-    elseif has("unix")
-
-        return "linux"
-
-    endif
-
-endfunction
 
 
 
@@ -206,12 +238,11 @@ nnoremap <C-l> <C-w>l
 "nnoremap <leader>4 :set filetype=php<CR>
 
 
-
 " set fileformats=unix,dos,mac
-
-" nmap <leader>fd :se fileformat=dos<CR>
-
-" nmap <leader>fu :se fileformat=unix<CR>
+"\fd
+nmap <leader>fd :se fileformat=dos<CR>
+"\fu
+nmap <leader>fu :se fileformat=unix<CR>
 
 
 
@@ -281,7 +312,7 @@ vmap <C-c> "+y
 "let Tlist_Display_Prototype = 0
 "
 "let Tlist_Compact_Format = 1
-
+"
 
 
 
@@ -396,7 +427,7 @@ let NERDTreeWinSize = 31
 "====================================================================
 " plugin - NeoComplCache.vim    自动补全插件
 "====================================================================
-source $VIM/vimfiles/neocomplcache.conf
+source $VIMFILES/neocomplcache.conf
 
 
 
@@ -438,5 +469,7 @@ let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_width = 30
 
 
-
+"=================================================================
+"plugin - rust.vim
+"=================================================================
 
