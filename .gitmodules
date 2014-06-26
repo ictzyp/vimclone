@@ -31,3 +31,6 @@
 [submodule "bundle/vim-python"]
 	path = bundle/vim-python
 	url = https://github.com/hdima/python-syntax.git
+[submodule "bundle/vim-c"]
+	path = bundle/vim-c
+	url = https://github.com/WolfgangMehner/vim-plugins.git
