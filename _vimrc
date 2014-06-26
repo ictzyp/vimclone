@@ -50,7 +50,6 @@ endfunction
 
 
 "============myself=====================
-
 syntax on                   " 自动语法高亮
 
 "colorscheme molokai         " 设定配色方案
@@ -85,10 +84,11 @@ set autochdir               " 自动切换当前目录为当前文件所在的�
 
 filetype on
 
-filetype plugin on 
+filetype plugin on
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 filetype plugin indent on   " 开启插件
-
 
 set backupcopy=yes          " 设置备份时的行为为覆盖
 
@@ -265,10 +265,7 @@ nmap <leader>fu :se fileformat=unix<CR>
 
 vmap <C-c> "+y
 
-
-
-
-
+autocmd FileType python nmap <F5> :!python %<CR>
 
 
 "==================================================================
@@ -473,3 +470,10 @@ let g:tagbar_width = 30
 "plugin - rust.vim
 "=================================================================
 
+
+"=================================================================
+"plugin - python.vim
+"=================================================================
+
+"enable all features
+let python_highlight_all = 1
